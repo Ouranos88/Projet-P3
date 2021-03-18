@@ -1,0 +1,16 @@
+if (tree==NULL|| (*tree).root == NULL ){
+    return 0;
+}
+node_t *current = tree->root;
+while (current!=NULL){
+    if ((*current).value == value ){
+        return 1;
+    }
+    if ((*current).value<value){
+        current = current->right;
+    }
+    else {
+        current = current->left;
+    }
+}
+return 0;

@@ -1,0 +1,12 @@
+for (size_t i = 0; i < nb; i++) {
+    int lock = pthread_mutex_lock(mutex);
+    if (lock !=0){
+        return -1;
+    }
+    inc();
+    int unlock = pthread_mutex_unlock(mutex);
+    if (unlock !=0){
+        return -1;
+    }
+}
+return 0;

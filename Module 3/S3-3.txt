@@ -1,0 +1,10 @@
+size_t i,length;
+length = strlen(src) + 1;
+char *buf = malloc(length);
+if (buf==NULL){
+    return NULL;
+}
+for (i=0;i<length;i++){
+    buf[i]=src[i];
+}
+return buf;

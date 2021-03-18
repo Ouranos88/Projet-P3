@@ -1,0 +1,25 @@
+node_t *init_node(int value) {
+    node_t *now =(node_t*) malloc (sizeof(node_t));
+    if (now==NULL){
+        return NULL;
+    }
+    (*now).next = NULL;
+    (*now).value = value;
+    return now;
+}
+
+------------------------------
+
+int add_node(list_t *list, int value) {
+    if (list == NULL){
+        return 1;
+    }
+    node_t *current = init_node(value);
+    if (current == NULL){
+        return 1;
+    }
+    current->next = list->first;
+    list->first = current;
+    list->size++;
+    return 0;
+}

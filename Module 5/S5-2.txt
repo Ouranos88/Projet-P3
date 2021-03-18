@@ -1,0 +1,27 @@
+int file  = open(filename,O_RDWR|O_CREAT|O_TRUNC);
+if (file<0){
+    return -1;
+}
+int run  = ftruncate(file,sizeof(*pt)*size);
+if (run<0){
+    return -6;
+}
+void *mmap_file = mmap(NULL,sizeof(*pt)*size,PROT_WRITE,MAP_SHARED,file,0);
+if (mmap_file == (void *)-1){
+    return -3;
+}
+memcpy(mmap_file,pt,sizeof(*pt)*size);
+
+int msync_file = msync(mmap_file,sizeof(pt),MS_SYNC);
+if (msync_file<0){
+    return -5;
+}
+int munmap_file = munmap(mmap_file,sizeof(*pt)*size);
+if (munmap_file<0){
+    return -4;
+}
+int close_file  = close (file);
+if (close_file<0){
+    return -2;
+}
+return 0;

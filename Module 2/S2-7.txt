@@ -1,0 +1,2 @@
+uint8_t z = x<<4;
+return z>>4;

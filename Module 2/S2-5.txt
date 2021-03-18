@@ -1,0 +1,11 @@
+if (str == NULL) return -1;
+char *first = &str[0];
+char *last = &str[strlen(str) - 1];
+while (first < last) {
+    while (*first == ' ') first++;
+    while (*last == ' ') last--;
+    if (*first != *last) return 0;
+    first++;
+    last--;
+}
+return 1;

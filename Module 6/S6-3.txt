@@ -1,0 +1,24 @@
+int *result;
+int value;
+pthread_t thread_att_1;
+int thread_1 = pthread_create(&thread_att_1,NULL,long_computing,string);
+if (thread_1!=0){
+    return -1;
+}
+int thread_join_1 = pthread_join(thread_att_1,(void*)&result);
+if (thread_join_1!=0){
+    return -2;
+}
+value = *result;
+if (value!=ret_value){
+   pthread_t thread_att_2;
+    int thread_2 = pthread_create(&thread_att_2,NULL,backup_computing,string);
+    if (thread_2!=0){
+        return -3;
+    }
+    int thread_join_2 = pthread_join(thread_att_2,(void*)&result);
+    if (thread_join_2!=0){
+        return -4;
+} 
+}
+return value;

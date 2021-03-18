@@ -1,0 +1,28 @@
+#include <string.h>
+
+---------------
+
+
+if (head == NULL) return NULL;
+struct node *newLinkedList = (struct node *) malloc(sizeof(*head));
+if (newLinkedList == NULL) return NULL;
+memcpy(newLinkedList, head, sizeof(*head));
+struct node *temp = head;
+struct node *new = newLinkedList;
+int i = 0;
+
+while (temp->next != NULL) {
+    i++;
+    temp = temp->next;
+    if (i % 2 == 0) {
+        struct node *newNode = (struct node *) malloc(sizeof(*head));
+        if(newNode == NULL){
+            return NULL;
+        }
+        memcpy(newNode, temp, sizeof(*head));
+        new->next = newNode;
+        new = new->next;
+    }
+}
+new->next = NULL;
+return newLinkedList;

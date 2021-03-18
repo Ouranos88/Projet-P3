@@ -1,0 +1,2 @@
+int move = 1 << pos; 
+return (x & ~move) | ((value << pos) & move); 

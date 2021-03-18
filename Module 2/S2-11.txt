@@ -1,0 +1,8 @@
+uint32_t a = x;
+int i = 0;
+while (a != 1 && a != 0) {
+    i++;
+    a = x;
+    a = a >> i;
+}
+return x & ~(1 << i);

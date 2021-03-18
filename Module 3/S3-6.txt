@@ -1,0 +1,12 @@
+int *buf;
+int i;
+for (i=0;i<10;i++){
+    buf =  malloc(s);
+    if (buf==NULL){
+        sleep(5);
+    }
+    else{
+        return buf;
+    }
+}
+return buf;

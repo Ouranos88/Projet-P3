@@ -1,0 +1,37 @@
+int file = open(file_name,O_RDWR);
+if (file<0){
+    return -1;
+}
+struct stat buf;
+int fstat_file = fstat(file,&buf);
+if (fstat_file<0){
+    return -1;
+}
+int new_file = open(new_file_name,O_RDWR|O_CREAT|O_TRUNC,buf.st_mode);
+if (new_file<0){
+    return -1;
+}
+int size = buf.st_size;
+int run  = ftruncate(new_file,size);
+if (run<0){
+    return -1;
+}
+int *mmap_new_file = mmap(NULL,size,PROT_WRITE,MAP_SHARED,new_file,0);
+int *mmap_file = mmap(NULL,size,PROT_WRITE,MAP_SHARED,file,0);
+if (mmap_new_file == MAP_FAILED || mmap_file == MAP_FAILED){
+        return -1 ;
+    }
+memcpy(mmap_new_file,mmap_file,size);
+int msync_file = msync(mmap_new_file,size,MS_SYNC);
+if (msync_file<0){
+    return -1;
+}
+int file_new_munmap = munmap(mmap_new_file,size);
+int file_munmap = munmap(mmap_file,size);
+if (file_new_munmap<0 || file_munmap<0){
+    return-1 ;
+}
+if (close(file)<0 || close(new_file)<0){
+    return -1;
+}
+return 0;

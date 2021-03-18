@@ -1,0 +1,31 @@
+int file = open(filename,O_RDONLY);
+if (file<0){
+    return -1;
+}
+struct stat buf;
+int fstat_file = fstat(file,&buf);
+if (fstat_file<0){
+    return -5;
+}
+if (buf.st_size==0){
+    if (close(file)<0){
+        return -2;
+    }
+    return 0;
+}
+int *file_mmap = mmap(NULL,buf.st_size,PROT_READ,MAP_SHARED,file,0);
+    if (file_mmap == (void*)-1){
+        return -3;
+    }
+int sum = 0;
+for (int i=0;i<(buf.st_size/sizeof(int));i++){
+    sum+=*(file_mmap+i);
+}
+int file_munmap = munmap(file_mmap,buf.st_size);
+if (file_munmap<0){
+    return -4;
+}
+if (close(file)<0){
+    return -2;
+}
+return sum;

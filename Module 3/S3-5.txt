@@ -1,0 +1,10 @@
+int i;
+char *buf;
+buf = (char*) malloc(nmemb * size);
+if (buf==NULL){
+    return NULL;
+}
+for (i=0;i<nmemb;i++){
+    buf[i]=0;
+}
+return buf;

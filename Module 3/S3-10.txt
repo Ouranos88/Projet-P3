@@ -1,0 +1,33 @@
+return (*ptrProd).price;
+
+------------------------
+
+return (prod).price;
+
+
+----------------------------
+
+char *current = (char*) malloc(strlen((*ptrProd).name)+1);
+if (current == NULL){
+    return NULL;
+}
+*current = *strcpy(current,(*ptrProd).name);
+return current;
+
+--------------------------------
+
+
+char *current = (char*) malloc(strlen((prod).name)+1);
+if (current == NULL){
+    return NULL;
+}
+*current = *strcpy(current,(prod).name);
+return current;
+
+------------------------------
+
+
+if (strcmp((*ptrProd).name,(prod).name)==0&& (*ptrProd).price==(prod).price){
+    return 1;
+}
+return 0;

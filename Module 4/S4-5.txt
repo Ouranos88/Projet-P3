@@ -1,0 +1,22 @@
+Not 100%
+--------------
+
+return a-b;
+
+-------------------
+
+node_t *temp = *head;
+while (temp->next != NULL) {
+    if (cmp(val, temp->val) > 0) {
+        if (cmp(val, temp->next->val) < 0) {
+            node_t *new = malloc(sizeof(node_t));
+            if (new == NULL) return -1;
+            new->val = val;
+            new->next = temp->next;
+            temp->next = new;
+            break;
+        }
+    }
+    temp =  temp->next;
+}
+return 0;

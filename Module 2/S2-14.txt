@@ -1,0 +1,3 @@
+struct fract_t memory = *a;
+*a=*b;
+*b = memory;

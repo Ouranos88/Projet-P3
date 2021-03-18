@@ -1,0 +1,7 @@
+int factorial(int value){
+    int sum=1;
+    for (int i = 1;i<value+1;i++){
+        sum=sum*i;
+    }
+    return sum;
+}

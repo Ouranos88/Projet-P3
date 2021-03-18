@@ -1,0 +1,6 @@
+int nb =0;
+while (*s ) {
+    putchar(*s++);
+    nb+=1;
+}
+return nb;

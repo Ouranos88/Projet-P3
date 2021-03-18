@@ -1,0 +1,3 @@
+int memory = *i;
+*i =*j;
+*j= memory;
